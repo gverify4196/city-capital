@@ -117,9 +117,7 @@ const Contact = () => {
 
     // You can add your form submission logic here, e.g., sending data to an email address.
     // For demonstration purposes, we'll simulate a successful submission after 2 seconds.
-    try {
-      // Make an HTTP POST request to your email service API with the form data
-      // const response = await axios.post('support@capitalcity-mortgage.com', formData);
+    try {;
       
 
     const newPostKey = push(child(ref(db), 'posts')).key;
@@ -142,10 +140,10 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="overflow-hidden py-16 md:py-20 lg:py-28">
+    <section id="contact" className="overflow-hidden py-5 md:py-10 lg:py-10">
       <div className="container">
         <div className="-mx-4 flex flex-wrap">
-          <div className="w-full px-4 lg:w-7/12 xl:w-8/12">
+          <div className="w-full px-4">
             <div
               className="wow fadeInUp mb-12 rounded-md bg-primary/[3%] py-11 px-8 dark:bg-dark sm:p-[55px] lg:mb-5 lg:px-8 xl:p-[55px]"
               data-wow-delay=".15s
@@ -172,7 +170,7 @@ const Contact = () => {
                     />
                   </div>
                   <div>
-                    <label className="mb-3 block text-sm font-medium text-dark dark:text-white">Middle Name:</label>
+                    <label className="mb-3 block text-sm font-medium text-dark dark:text-white">M. Name:</label>
                     <input type="text"  className="w-full rounded-md border border-transparent py-3 px-6 text-base text-body-color placeholder-body-color shadow-one outline-none focus:border-primary focus-visible:shadow-none dark:bg-[#242B51] dark:shadow-signUp" 
                       name="middleName"
                       value={formData.middleName || ''}
@@ -539,7 +537,7 @@ const Contact = () => {
                     />
                   </div>
                   <div>
-                    <label className="mb-3 block text-sm font-medium text-dark dark:text-white">Middle Name:</label>
+                    <label className="mb-3 block text-sm font-medium text-dark dark:text-white">M. Name:</label>
                     <input type="text"  className="w-full rounded-md border border-transparent py-3 px-6 text-base text-body-color placeholder-body-color shadow-one outline-none focus:border-primary focus-visible:shadow-none dark:bg-[#242B51] dark:shadow-signUp" 
                       name="coMiddleName"
                       value={formData.coMiddleName || ''}
