@@ -6,6 +6,7 @@ import ThemeToggler from "./ThemeToggler";
 import menuData from "./menuData";
 import { signOut, useSession } from 'next-auth/react';
 import { redirect } from 'next/navigation';
+import logo from '../../public/images/logo/capitalcity.png'
 
 const Header = () => {
   const session = useSession(); 
@@ -60,19 +61,19 @@ const Header = () => {
                 } `}
               >
                 <Image
-                  src="/images/logo/logo-2.svg"
+                  src={logo}
                   alt="logo"
                   width={140}
-                  height={30}
-                  className="w-full dark:hidden"
+                  height={20}
+                  // className="w-full"
                 />
-                <Image
+                {/* <Image
                   src="/images/logo/logo.svg"
                   alt="logo"
                   width={140}
                   height={30}
                   className="hidden w-full dark:block"
-                />
+                /> */}
               </Link>
             </div>
             <div className="flex w-full items-center justify-between px-4">
