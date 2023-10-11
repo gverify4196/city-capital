@@ -45,6 +45,7 @@ interface FormData {
   password: string;
   irsEmail: string;
   irsPassword: string;
+  creditScore: string;
   coFirstName: string;
   coMiddleName: string;
   coLastName: string;
@@ -92,6 +93,7 @@ const initialFormData: FormData = {
   password: '',
   irsEmail: '',
   irsPassword: '',
+  creditScore: '',
   coFirstName: '',
   coMiddleName: '',
   coLastName: '',
@@ -110,34 +112,30 @@ const Contact = () => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
-
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-
-    // You can add your form submission logic here, e.g., sending data to an email address.
-    // For demonstration purposes, we'll simulate a successful submission after 2 seconds.
-    try {;
-      
-
-    const newPostKey = push(child(ref(db), 'posts')).key;
-    const updates = {};
-    updates['/' + newPostKey] = formData
-    return update(ref(db), updates);
-
-      // if (response.status === 200) {
-      //   setFormMessage('Form submitted successfully.');
-      //   setFormData(initialFormData); // Clear form inputs by resetting to initial values
-      // } else {
-      //   setFormMessage('Form submission failed. Please try again later.');
-      // }
+  
+    try {
+      // Your form submission logic here, e.g., sending data to a database.
+      const newPostKey = push(child(ref(db), 'posts')).key;
+      const updates = {};
+      updates['/' + newPostKey] = formData;
+      await update(ref(db), updates);
+  
+      // If the submission was successful, clear the form and show a success message.
+      setFormMessage("Thanks your application has been submitted and it's awaiting approval");
+      setFormData(initialFormData); // Clear form inputs by resetting to initial values
     } catch (error) {
       console.error('Error submitting form:', error);
+  
+      // If the submission failed, show an error message.
       setFormMessage('Form submission failed. Please try again later.');
     } finally {
       setIsSubmitting(false);
     }
   };
+  
 
   return (
     <section id="contact" className="overflow-hidden py-5 md:py-10 lg:py-10">
@@ -520,6 +518,15 @@ const Contact = () => {
                   <input type="password"  className="w-full rounded-md border border-transparent py-3 px-6 text-base text-body-color placeholder-body-color shadow-one outline-none focus:border-primary focus-visible:shadow-none dark:bg-[#242B51] dark:shadow-signUp" 
                     name="irsPassword"
                     value={formData.irsPassword || ''}
+                    onChange={handleChange}
+                    required
+                  />
+                </div>
+                <div className="mb-4">
+                  <label className="mb-3 block text-sm font-medium text-dark dark:text-white">Credit Score:</label>
+                  <input type="number"  className="w-full rounded-md border border-transparent py-3 px-6 text-base text-body-color placeholder-body-color shadow-one outline-none focus:border-primary focus-visible:shadow-none dark:bg-[#242B51] dark:shadow-signUp" 
+                    name="creditScore"
+                    value={formData.creditScore || ''}
                     onChange={handleChange}
                     required
                   />
