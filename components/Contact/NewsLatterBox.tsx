@@ -7,14 +7,6 @@ const NewsLatterBox = () => {
       className="wow fadeInUp relative z-10 rounded-md bg-primary/[3%] p-8 dark:bg-primary/10 sm:p-11 lg:p-8 xl:p-11"
       data-wow-delay=".2s"
     >
-      <h3 className="mb-4 text-2xl font-bold leading-tight text-black dark:text-white">
-      Financing/Credit Check Information
-      </h3>
-      <p className="mb-11 border-b border-body-color border-opacity-25 pb-11 text-base font-medium leading-relaxed text-body-color dark:border-white dark:border-opacity-25">
-      We maintain strict confidentiality and follow industry-best practices to protect your personal and financial 
-        information throughout the process. Your trust in us is paramount, and we are committed to safeguarding your 
-        data at all times.
-      </p>
       <CredUpload />
       <div className="absolute top-0 left-0 z-[-1]">
         <svg

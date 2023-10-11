@@ -11,7 +11,7 @@ const AboutSectionTwo = () => {
             <NewsLatterBox/>
           </div>
           <div className="w-full px-4 lg:w-1/2">
-          <NewsLatterBoxII/>
+            <NewsLatterBoxII/>
         </div>
         </div>
       </div>
