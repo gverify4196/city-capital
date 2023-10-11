@@ -15,7 +15,7 @@ const Hero = () => {
                 data-wow-delay=".2s"
               >
                 <h1 className="mb-5 text-3xl font-bold leading-tight text-black dark:text-white sm:text-4xl sm:leading-tight md:text-5xl md:leading-tight">
-                We are City Capital Mortgage
+                We are Capital City Mortgage
                 </h1>
                 <p className="mb-12 text-base font-medium !leading-relaxed text-amber-400 dark:text-yellow dark:opacity-90 sm:text-lg md:text-xl">
                 #1 Independent Manufactured Housing Dealer. Where Houses Become Homes.
