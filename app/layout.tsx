@@ -6,6 +6,8 @@ import ScrollToTop from "@/components/ScrollToTop";
 import "node_modules/react-modal-video/css/modal-video.css";
 import "../styles/index.css";
 import SessionProvider from './SessionProvider';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 
@@ -34,6 +36,7 @@ export default function RootLayout({
           <ScrollToTop />
         </Providers>
       </SessionProvider>
+      <ToastContainer />
       </body>
     </html>
   );

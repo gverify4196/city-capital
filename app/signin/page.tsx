@@ -3,11 +3,39 @@ import Link from "next/link";
 import { signIn } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const SigninPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const router = useRouter();
+  const [isSigningIn, setIsSigningIn] = useState(false);
+
+  const handleSignIn = async () => {
+    if (email && password) {
+      setIsSigningIn(true);
+
+      try {
+        // Call signIn with credentials
+        await signIn('credentials', {
+          email,
+          password,
+          redirect: false, // Avoid automatic redirection
+        });
+
+        // Sign in successful, show a success message
+        toast.success('Sign in successful!'); // Show success toast
+        router.push('/'); // Redirect to the desired page
+      } catch (error) {
+        // Sign in failed, show an error message
+        toast.error('Sign in failed. Please check your credentials.'); // Show error toast
+        setIsSigningIn(false); // Reset the signing-in state
+      }
+    } else {
+      toast.error('Please enter valid email and password.');
+    }
+  };
 
    
   return (
@@ -78,12 +106,13 @@ const SigninPage = () => {
                     </div>
                   </div>
                   <div className="mb-6">
-                    <button 
-                      onClick={() => signIn('credentials', {email, password, redirect: true, callbackUrl: '/'})}
-                      disabled={!email || !password}
-                      className="flex w-full items-center justify-center rounded-md bg-primary py-4 px-9 text-base font-medium text-white transition duration-300 ease-in-out hover:bg-opacity-80 hover:shadow-signUp">
-                      Sign in
-                    </button>
+                  <button
+                    disabled={isSigningIn || !(email && password)}
+                    onClick={handleSignIn}
+                    className="flex w-full items-center justify-center rounded-md bg-primary py-4 px-9 text-base font-medium text-white transition duration-300 ease-in-out hover:bg-opacity-80 hover:shadow-signUp"
+                  >
+                    {isSigningIn ? 'Signing In...' : 'Sign in'}
+                  </button>
                   </div>
                 {/* </form> */}
                 <p className="text-center text-base font-medium text-body-color">

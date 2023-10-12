@@ -53,4 +53,5 @@ module.exports = {
   plugins: [
     require('preline/plugin'),
   ],
+  "types": ["react-toastify"],
 };

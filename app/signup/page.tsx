@@ -4,15 +4,31 @@ import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { auth } from '../firebase';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 const SignupPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [passwordAgain, setPasswordAgain] = useState('');
+  const [isSigningUp, setIsSigningUp] = useState(false);
 
-  const signup = () => {
-    createUserWithEmailAndPassword(auth, email, password);
+  const signup = async () => {
+    if (email && password && password === passwordAgain) {
+      setIsSigningUp(true);
+
+      try {
+        await createUserWithEmailAndPassword(auth, email, password);
+        toast.success('Signup successful!');
+      } catch (error) {
+        toast.error('Error: ' + error.message);
+      }
+
+      setIsSigningUp(false);
+    } else {
+      toast.error('Please enter valid email and matching passwords.');
+    }
   };
 
   return (
@@ -156,10 +172,10 @@ const SignupPage = () => {
                   </div>
                   <div className="mb-6">
                     <button 
-                    // disabled={(!email || !password || !passwordAgain) || (password !== passwordAgain)}
+                    disabled={isSigningUp || !(email && password && password === passwordAgain)}
                     onClick={() => signup()}
                     className="cursor-pointer flex w-full items-center justify-center rounded-md bg-primary py-4 px-9 text-base font-medium text-white transition duration-300 ease-in-out hover:bg-opacity-80 hover:shadow-signUp">
-                      Sign up
+                      {isSigningUp ? 'Signing Up...' : 'Sign up'}
                     </button>
                   </div>
                 {/* </form> */}
