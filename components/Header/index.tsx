@@ -1,4 +1,4 @@
-"use client";
+'use client';
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -154,6 +154,22 @@ const Header = () => {
                         )}
                       </li>
                     ))}
+                     {
+                      !user && <> <Link
+                      href="/signin"
+                      className="cursor-pointer ease-in-up text-primary text-base font-bold lg:hidden md:hidden"
+                    >
+                      Sign In
+                    </Link>
+                    <div className="mt-3">
+                    <Link
+                      href="/signup"
+                      className="cursor-pointer ease-in-up text-primary text-base font-bold lg:hidden md:hidden"
+                    >
+                      Sign Up
+                    </Link>
+                      </div></>
+                    }
                     {
                      user && <>
                               
