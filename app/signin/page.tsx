@@ -26,7 +26,7 @@ const SigninPage = () => {
 
         // Sign in successful, show a success message
         toast.success('Sign in successful!'); // Show success toast
-        router.push('/'); // Redirect to the desired page
+        router.push('/about'); // Redirect to the desired page
       } catch (error) {
         // Sign in failed, show an error message
         toast.error('Sign in failed. Please check your credentials.'); // Show error toast
