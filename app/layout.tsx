@@ -37,9 +37,11 @@ export default function RootLayout({
         </Providers>
       </SessionProvider>
       <ToastContainer />
+      <Smartsupp/>
       </body>
     </html>
   );
 }
 
 import { Providers } from "./providers";
+import Smartsupp from "@/components/Smartsupp";

@@ -7,6 +7,8 @@ import menuData from "./menuData";
 import { signOut, useSession } from 'next-auth/react';
 import { redirect } from 'next/navigation';
 import logo from '../../public/images/logo/capitalcity.png'
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Header = () => {
   const session = useSession(); 
@@ -40,6 +42,15 @@ const Header = () => {
     } else {
       setOpenIndex(index);
     }
+  };
+  const handleSignOut = async () => {
+    await signOut();
+
+    // Display a toast notification when the user signs out
+    toast.success('You have been successfully signed out', {
+      position: toast.POSITION.TOP_RIGHT,
+      autoClose: 3000, // Adjust the duration as needed
+    });
   };
 
   return (
@@ -154,6 +165,14 @@ const Header = () => {
                         )}
                       </li>
                     ))}
+                    {
+                            user &&  <Link
+                            href="/about"
+                            className="flex py-2 text-base text-dark group-hover:opacity-70 dark:text-white lg:mr-0 lg:inline-flex lg:py-6 lg:px-0"
+                            >
+                            Dashboard
+                            </Link>
+                           }
                      {
                       !user && <> <Link
                       href="/signin"
@@ -173,7 +192,7 @@ const Header = () => {
                     {
                      user && <>
                               
-                     <span onClick={() => signOut()}
+                     <span onClick={handleSignOut}
                          className="cursor-pointer ease-in-up text-primary text-base font-bold lg:hidden md:hidden"
                          >
                          Logout
@@ -201,7 +220,7 @@ const Header = () => {
                 {
                   user && <>
                  
-                <div onClick={() => signOut()}
+                <div onClick={handleSignOut}
                     className="cursor-pointer ease-in-up hidden rounded-md bg-primary py-3 px-8 text-base font-bold text-white transition duration-300 hover:bg-opacity-90 hover:shadow-signUp md:block md:px-9 lg:px-6 xl:px-9"
                     >
                     Logout

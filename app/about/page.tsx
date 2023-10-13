@@ -7,9 +7,9 @@ import { redirect } from 'next/navigation';
 const AboutPage = () => {
   const session = useSession({
     required: true,
-    onUnauthenticated() {
-      redirect('/signin');
-    },
+    // onUnauthenticated() {
+    //   redirect('/signin');
+    // },
   });
 
   return (
