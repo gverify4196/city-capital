@@ -155,30 +155,10 @@ const Header = () => {
                       </li>
                     ))}
                     {
-                      !user && <> 
-                      <div className="mb-2">
-                      <Link
-                        href="/signin"
-                        className="cursor-pointer ease-in-up text-primary hover:opacity-70 text-base font-bold md:hidden"
-                      >
-                        Sign In
-                      </Link>
-                      </div>
-                      <div>
-                      <Link
-                        href="/signup"
-                        className="cursor-pointer ease-in-up text-primary hover:opacity-70 text-base font-bold md:hidden"
-                      >
-                        Sign Up
-                      </Link>
-                      </div>
-                      </>
-                      }
-                    {
                      user && <>
                               
                      <span onClick={() => signOut()}
-                         className="cursor-pointer ease-in-up text-primary text-base font-bold"
+                         className="cursor-pointer ease-in-up text-primary text-base font-bold lg:hidden md:hidden"
                          >
                          Logout
                        </span>
