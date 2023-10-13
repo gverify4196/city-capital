@@ -139,7 +139,7 @@ const Header = () => {
                                 openIndex === index ? "block" : "hidden"
                               }`}
                             >
-                              {menuItem.submenu.map((submenuItem) => (
+                              {/* {menuItem.submenu.map((submenuItem) => (
                                 <Link
                                   href={submenuItem.path}
                                   key={submenuItem.id}
@@ -147,12 +147,23 @@ const Header = () => {
                                 >
                                   {submenuItem.title}
                                 </Link>
-                              ))}
+                              ))} */}
+                              
                             </div>
                           </>
                         )}
                       </li>
                     ))}
+                    {
+                     user && <>
+                              
+                     <span onClick={() => signOut()}
+                         className="cursor-pointer ease-in-up text-primary text-base font-bold"
+                         >
+                         Logout
+                       </span>
+                     </>
+                     }           
                   </ul>
                 </nav>
               </div>
