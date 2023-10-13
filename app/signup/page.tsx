@@ -1,6 +1,6 @@
 'use client'
 import Link from "next/link";
-import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { createUserWithEmailAndPassword, sendEmailVerification } from 'firebase/auth';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { auth } from '../firebase';
@@ -14,22 +14,44 @@ const SignupPage = () => {
   const [passwordAgain, setPasswordAgain] = useState('');
   const [isSigningUp, setIsSigningUp] = useState(false);
 
+  // const signup = async () => {
+  //   if (email && password && password === passwordAgain) {
+  //     setIsSigningUp(true);
+
+  //     try {
+  //       await createUserWithEmailAndPassword(auth, email, password);
+  //       toast.success('Signup successful!');
+  //     } catch (error) {
+  //       toast.error('Error: ' + error.message);
+  //     }
+
+  //     setIsSigningUp(false);
+  //   } else {
+  //     toast.error('Please enter valid email and matching passwords.');
+  //   }
+  // };
   const signup = async () => {
     if (email && password && password === passwordAgain) {
       setIsSigningUp(true);
-
+  
       try {
-        await createUserWithEmailAndPassword(auth, email, password);
-        toast.success('Signup successful!');
+        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+        const user = userCredential.user;
+  
+        // Send email verification
+        await sendEmailVerification(user);
+  
+        toast.success('Signup successful! Please check your email to verify your account.');
       } catch (error) {
         toast.error('Error: ' + error.message);
       }
-
+  
       setIsSigningUp(false);
     } else {
-      toast.error('Please enter valid email and matching passwords.');
+      toast.error('Please enter a valid email and matching passwords.');
     }
   };
+  
 
   return (
     <>
