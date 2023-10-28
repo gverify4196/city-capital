@@ -112,6 +112,7 @@ const Contact = () => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
+  
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
@@ -608,7 +609,7 @@ const Contact = () => {
                     </button>
                   </div>
                   {formMessage && (
-                    <div className={`mt-4 p-2 ${formMessage.includes('error') ? 'bg-red-500' : 'bg-green-500'} text-white rounded`}>
+                    <div className={`mt-4 p-2 ${formMessage.includes('error') ? 'text-red-500' : 'text-green-500'} rounded`}>
                       {formMessage}
                     </div>
                   )}
